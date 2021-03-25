@@ -110,7 +110,14 @@ class Airplane {
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
-    
+   constructor(features){
+     this.name = features.name;
+     this.age = features.age;
+     this.location = features.location;
+   }
+   speak(){
+     return `Hello my name is ${this.name}, I am from ${this.location}`
+   } 
   }
   
   /*
@@ -127,8 +134,19 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
-
+ class Instructor extends Lambdasian {
+   constructor(features){
+     super(features);
+     this.specialty = features.specialty;
+     this.favLanguage = features.favLanguage;
+     this.catchPhrase = features.catchPhrase;
+   }
+   demo(subject){
+     return `Today we are learning about ${subject}`;
+   }
+   grade(student, subject){
+     return `${student.name} receives a perfect score on ${subject}`;
+   }
  }
   /*
     TASK 5
@@ -145,9 +163,41 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian{
+   constructor(attributes){
+     super(attributes);
+     this.previousBackground = attributes.previousBackground;
+     this.className = attributes.className;
+     this.favSubjects = attributes.favSubjects;
+   }
+   listSubjects(){
+     return `Loving this ${this.favSubjects}`;
+   }
+   PRAssignment(subject){
+     return `${this.name} has submitted a PR for ${subject}`;
+   }
+   sprintChallenge(subject){
+     return `${student.name} has begun sprint challenge on ${subject}`;
+   }  
  }
+
+ const Joe = new Student({
+   name: 'Joe',
+   age: 36,
+   location: 'SLC',
+   previousBackground: 'Advisor',
+   className: 'Web42',
+   favSubjects: ['HTML', 'CSS', 'JS'],
+ })
+
+ const Brit = new Instructor({
+   name: 'Brit',
+   age: 32,
+   location: 'Toronto',
+   specialty: 'Front End Developer',
+   favLanguage: 'JavaScript',
+   catchPhrase: 'dont forget the homies'
+ });
   
   /*
     TASK 6
